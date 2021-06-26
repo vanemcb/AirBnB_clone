@@ -9,10 +9,6 @@ from datetime import datetime
 import json
 import os
 
-def setUpModule():
-        pass
-def tearDownModule():
-        pass
 
 class TestBase_ModelClass(unittest.TestCase):
     """Class for the test of BaseModel class
@@ -22,6 +18,7 @@ class TestBase_ModelClass(unittest.TestCase):
     def setUpClass(self):
         self.my_model1 = BaseModel()
         self.my_model2 = BaseModel()
+
     @classmethod
     def tearDownClass(self):
         pass
@@ -97,10 +94,20 @@ class TestBase_ModelClass(unittest.TestCase):
         Args:
             None
         """
-        self.assertEqual(print(self.my_model1), print("[{}] ({}) {}".format(
-            type(self.my_model1).__name__, self.my_model1.id, self.my_model1.__dict__)))
-        self.assertEqual(print(self.my_model2), print("[{}] ({}) {}".format(
-            type(self.my_model2).__name__, self.my_model2.id, self.my_model2.__dict__)))
+        self.assertEqual(
+            print(
+                self.my_model1), print(
+                    "[{}] ({}) {}".format(
+                                            type(self.my_model1).__name__,
+                                            self.my_model1.id,
+                                            self.my_model1.__dict__)))
+        self.assertEqual(
+            print(
+                self.my_model2), print(
+                    "[{}] ({}) {}".format(
+                                            type(self.my_model2).__name__,
+                                            self.my_model2.id,
+                                            self.my_model2.__dict__)))
 
     def test_save(self):
         """
@@ -114,6 +121,24 @@ class TestBase_ModelClass(unittest.TestCase):
         date2 = self.my_model2.updated_at
         self.my_model2.save()
         self.assertNotEqual(self.my_model2.updated_at, date2)
+
+    def test_kwargs(self):
+        """
+        testing __init__ with kwargs
+        Args:
+            None
+        """
+        new_dict = self.my_model1.to_dict()
+        my_model3 = BaseModel(**new_dict)
+
+        self.assertEqual(self.my_model1.__dict__, my_model3.__dict__)
+        self.assertEqual(self.my_model1.to_dict(), my_model3.to_dict())
+        self.assertIsInstance(my_model3, BaseModel)
+        self.assertNotEqual(self.my_model1, my_model3)
+        self.assertIsInstance(my_model3.created_at, datetime)
+        self.assertIsInstance(my_model3.updated_at, datetime)
+        self.assertFalse(type(my_model3.created_at) is str)
+
 
 if __name__ == '__main__':
     unittest.main()
