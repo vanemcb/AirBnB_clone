@@ -33,8 +33,17 @@ class FileStorage:
 
     def save(self):
         """ serializes __objects to the JSON file (path: __file_path) """
-        with open(FileStorage.__file_path, mode="w", encoding='utf-8') as my_file:
+        with open(FileStorage.__file_path, "w", encoding='utf-8') as my_file:
             my_file.write(json.dumps(FileStorage.__objects))
+
+    def reload(self):
+        """ Deserializes the JSON file to __objects  """
+        try:
+            with open(FileStorage.__file_path, "r", encoding='utf-8') as my_file2:
+                __objects = json.loads(my_file2.read())
+        except:
+            pass
+
 
 my_model1 = BaseModel()
 my_model2 = BaseModel()
@@ -42,4 +51,8 @@ my_file = FileStorage()
 my_file.new(my_model1)
 my_file.new(my_model2)
 print(my_file.all())
-my_file.save()
+#my_file.save()
+print("######################################")
+my_file.reload()
+#print(my_file.all())
+
