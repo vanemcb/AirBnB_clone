@@ -4,12 +4,12 @@
     proposed by Holberton school to learn how a web page works.
 """
 
-import uuid
 from datetime import datetime
+""" import uuid
 import os, sys
 p = os.path.abspath('..')
 sys.path.insert(1, p)
-from base_model import BaseModel
+from models.base_model import BaseModel """
 import json
 
 class FileStorage:
@@ -40,12 +40,14 @@ class FileStorage:
         """ Deserializes the JSON file to __objects  """
         try:
             with open(FileStorage.__file_path, "r", encoding='utf-8') as my_file2:
-                __objects = json.loads(my_file2.read())
+                FileStorage.__objects = json.loads(my_file2.read())
+
+#            for obj_key, obj_dict in FileStorage.__objects.items():
+#                for k, v in obj_dict.items():
         except:
             pass
 
-
-my_model1 = BaseModel()
+""" my_model1 = BaseModel()
 my_model2 = BaseModel()
 my_file = FileStorage()
 my_file.new(my_model1)
@@ -54,5 +56,5 @@ print(my_file.all())
 #my_file.save()
 print("######################################")
 my_file.reload()
-#print(my_file.all())
+#print(my_file.all()) """
 
