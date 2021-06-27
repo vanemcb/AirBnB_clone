@@ -35,7 +35,7 @@ if __name__ == '__main__':
                 new_object = BaseModel()
                 new_object.save()
                 print(new_object.id)
-        
+
         def help_create(self):
             print('\n'.join([
                 'create: command that creates a new instance of BaseModel,',
@@ -53,8 +53,6 @@ if __name__ == '__main__':
                 print("** instance id missing **")
             else:
                 print(FileStorage.__objects[class_name + id])
-
-
 
     if __name__ == '__main__':
         HBNBCommand().cmdloop()
