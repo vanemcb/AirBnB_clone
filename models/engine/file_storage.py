@@ -4,12 +4,12 @@
     proposed by Holberton school to learn how a web page works.
 """
 
-from datetime import datetime
-""" import uuid
+"""from datetime import datetime
+import uuid
 import os, sys
 p = os.path.abspath('..')
 sys.path.insert(1, p)
-from models.base_model import BaseModel """
+from models.base_model import BaseModel"""
 import json
 
 class FileStorage:
@@ -25,7 +25,11 @@ class FileStorage:
 
     def all(self):
         """ returns the dictionary __objects """
-        return FileStorage.__objects
+        from models.base_model import BaseModel
+        my_dict_copy = FileStorage.__objects.copy()
+        for obj_key, obj_value in FileStorage.__objects.items():
+            my_dict_copy[obj_key] = BaseModel(**obj_value)
+        return my_dict_copy
 
     def new(self, obj):
         """ sets in __objects the obj with key <obj class name>.id """
@@ -38,23 +42,10 @@ class FileStorage:
 
     def reload(self):
         """ Deserializes the JSON file to __objects  """
+        from models.base_model import BaseModel
         try:
             with open(FileStorage.__file_path, "r", encoding='utf-8') as my_file2:
                 FileStorage.__objects = json.loads(my_file2.read())
 
-#            for obj_key, obj_dict in FileStorage.__objects.items():
-#                for k, v in obj_dict.items():
         except:
             pass
-
-""" my_model1 = BaseModel()
-my_model2 = BaseModel()
-my_file = FileStorage()
-my_file.new(my_model1)
-my_file.new(my_model2)
-print(my_file.all())
-#my_file.save()
-print("######################################")
-my_file.reload()
-#print(my_file.all()) """
-
