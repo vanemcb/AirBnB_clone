@@ -60,6 +60,7 @@ if __name__ == '__main__':
                 key = args[0] + "." + args[1]
                 dict_objects = storage.all()
                 obj = dict_objects.get(key)
+                print(dict_objects)
                 if obj:
                     print(obj)
                 else:
@@ -69,6 +70,32 @@ if __name__ == '__main__':
             print('\n'.join([
                 'show: command that prints the string representation',
                 'of an instance based on the class name and id.\n',
+            ]))
+
+        def do_destroy(self, line):
+            """ Deletes an instance based on the class name and id """
+            args = line.split()
+
+            if not args:
+                print("** class name missing **")
+            elif args[0] != "BaseModel":
+                print("** class doesn't exist **")
+            elif len(args) < 2:
+                print("** instance id missing **")
+            else:
+                key = args[0] + "." + args[1]
+                dict_objects = storage.all()
+                obj = dict_objects.get(key)
+                if obj:
+                    dict_objects.pop(key)
+                    storage.save()
+                else:
+                    print("** no instance found **")
+
+        def help_destroy(self):
+            print('\n'.join([
+                'destroy: command that deletes an',
+                'instance based on the class name and id.\n',
             ]))
 
     if __name__ == '__main__':
