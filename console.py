@@ -60,7 +60,6 @@ if __name__ == '__main__':
                 key = args[0] + "." + args[1]
                 dict_objects = storage.all()
                 obj = dict_objects.get(key)
-                print(dict_objects)
                 if obj:
                     print(obj)
                 else:
@@ -97,6 +96,14 @@ if __name__ == '__main__':
                 'destroy: command that deletes an',
                 'instance based on the class name and id.\n',
             ]))
+
+        def do_all(self, line):
+            dict_objects = storage.all()
+            list_objects = []
+            for k, v in dict_objects.items():
+                list_objects.append(v.__str__)
+            print(list_objects)
+
 
     if __name__ == '__main__':
         HBNBCommand().cmdloop()
