@@ -5,26 +5,28 @@
 """
 import cmd
 from models.base_model import BaseModel
+from models import storage
 
 if __name__ == '__main__':
+
     class HBNBCommand(cmd.Cmd):
         """Command interpreter for the AirBnB project."""
 
         prompt = "(hbnb) "
 
         def do_quit(self, line):
-            """Quit command to exit the program"""
+            """quit: command to exit the program.\n"""
             return True
 
         def do_EOF(self, line):
-            """Prueba 2"""
+            """End of File"""
             return True
 
         def emptyline(self):
             pass
 
         def do_create(self, class_name):
-            """create command that creates a new instance of BaseModel,
+            """Creates a new instance of BaseModel,
             saves it (to the JSON file) and prints the id.
             """
             if not class_name:
@@ -39,20 +41,35 @@ if __name__ == '__main__':
         def help_create(self):
             print('\n'.join([
                 'create: command that creates a new instance of BaseModel,',
-                'saves it (to the JSON file) and prints the id.',
+                'saves it (to the JSON file) and prints the id.\n',
             ]))
 
-        def do_show(self, class_name=None, object_id=None):
+        def do_show(self, line):
+            """ Prints the string representation of an instance based
+            on the class name and id """
 
-            print(class_name, object_id)
-            if not class_name:
+            args = line.split()
+
+            if not args:
                 print("** class name missing **")
-            elif class_name != "BaseModel":
+            elif args[0] != "BaseModel":
                 print("** class doesn't exist **")
-            elif not object_id:
+            elif len(args) < 2:
                 print("** instance id missing **")
             else:
-                print(FileStorage.__objects[class_name + id])
+                key = args[0] + "." + args[1]
+                dict_objects = storage.all()
+                obj = dict_objects.get(key)
+                if obj:
+                    print(obj)
+                else:
+                    print("** no instance found **")
+
+        def help_show(self):
+            print('\n'.join([
+                'show: command that prints the string representation',
+                'of an instance based on the class name and id.\n',
+            ]))
 
     if __name__ == '__main__':
         HBNBCommand().cmdloop()
