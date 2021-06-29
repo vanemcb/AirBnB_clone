@@ -39,6 +39,12 @@ class FileStorage:
         """ Deserializes the JSON file to __objects  """
         from models.base_model import BaseModel
         from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
+
         try:
             with open(FileStorage.__file_path, "r") as my_file2:
                 my_dict = json.loads(my_file2.read())
@@ -48,6 +54,16 @@ class FileStorage:
                     FileStorage.__objects[obj_key] = BaseModel(**obj_value)
                 elif obj_value["__class__"] == "User":
                     FileStorage.__objects[obj_key] = User(**obj_value)
+                elif obj_value["__class__"] == "State":
+                    FileStorage.__objects[obj_key] = State(**obj_value)
+                elif obj_value["__class__"] == "City":
+                    FileStorage.__objects[obj_key] = City(**obj_value)
+                elif obj_value["__class__"] == "Amenity":
+                    FileStorage.__objects[obj_key] = Amenity(**obj_value)
+                elif obj_value["__class__"] == "Place":
+                    FileStorage.__objects[obj_key] = Place(**obj_value)
+                elif obj_value["__class__"] == "Review":
+                    FileStorage.__objects[obj_key] = Review(**obj_value)
 
         except FileNotFoundError:
             pass
