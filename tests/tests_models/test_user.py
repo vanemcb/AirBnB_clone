@@ -65,15 +65,16 @@ class TestFile_User(unittest.TestCase):
         """
         a = dir(User)
         attributes = [
-            attr for attr in dir(FileStorage) if not attr.startswith('__')]
+            attr for attr in dir(User) if not attr.startswith('__')]
         self.assertTrue('email' in attributes)
-        self.assertEqual(type(FileStorage.email), str)
+        self.assertEqual(type(User.email), str)
         self.assertTrue('password' in attributes)
-        self.assertEqual(type(FileStorage.password), str)
+        self.assertEqual(type(User.password), str)
         self.assertTrue('first_name' in attributes)
-        self.assertEqual(type(FileStorage.first_name), str)
+        self.assertEqual(type(User.first_name), str)
         self.assertTrue('last_name' in attributes)
-        self.assertEqual(type(FileStorage.last_name), str)
+        self.assertEqual(type(User.last_name), str)
+
 
 if __name__ == '__main__':
     unittest.main()

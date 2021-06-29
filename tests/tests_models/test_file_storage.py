@@ -77,5 +77,6 @@ class TestFile_StorageClass(unittest.TestCase):
         self.assertTrue('save' in attributes)
         self.assertTrue('reload' in attributes)
 
+
 if __name__ == '__main__':
     unittest.main()

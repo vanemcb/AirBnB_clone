@@ -139,5 +139,6 @@ class TestBase_ModelClass(unittest.TestCase):
         self.assertIsInstance(my_model3.updated_at, datetime)
         self.assertFalse(type(my_model3.created_at) is str)
 
+
 if __name__ == '__main__':
     unittest.main()
