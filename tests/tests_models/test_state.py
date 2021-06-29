@@ -19,7 +19,7 @@ class TestState(unittest.TestCase):
         Args:
             None
         """
-        pass
+        self.state_obj = State()
 
     @classmethod
     def tearDownClass(self):
@@ -73,11 +73,9 @@ class TestState(unittest.TestCase):
         Args:
             None
         """
-        a = dir(State)
-        attributes = [
-            attr for attr in dir(State) if not attr.startswith('__')]
-        self.assertTrue('name' in attributes)
+        self.assertTrue(hasattr(self.state_obj, 'name'))
         self.assertEqual(type(State.name), str)
+        self.assertEqual(self.state_obj.name, "")
 
 
 if __name__ == '__main__':
