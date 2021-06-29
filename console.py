@@ -15,6 +15,7 @@ if __name__ == '__main__':
         """Command interpreter for the AirBnB project."""
 
         prompt = "(hbnb) "
+        file = None
 
         def do_quit(self, line):
             """quit: command to exit the program.\n"""
