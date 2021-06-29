@@ -45,5 +45,5 @@ class FileStorage:
             for obj_key, obj_value in my_dict.items():
                 FileStorage.__objects[obj_key] = BaseModel(**obj_value)
 
-        except:
+        except FileNotFoundError:
             pass
