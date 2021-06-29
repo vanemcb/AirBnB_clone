@@ -16,11 +16,21 @@ class TestBase_ModelClass(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
+        """
+        setUp method to create two instances
+        Args:
+            None
+        """
         self.my_model1 = BaseModel()
         self.my_model2 = BaseModel()
 
     @classmethod
     def tearDownClass(self):
+        """
+        tearDown method
+        Args:
+            None
+        """
         pass
 
     def test_Module_documentation(self):
