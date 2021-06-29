@@ -4,7 +4,7 @@
 
 import unittest
 import models.base_model
-from models.base_model import BaseModel
+#from models.base_model import BaseModel
 from datetime import datetime
 import json
 import os
@@ -21,8 +21,8 @@ class TestBase_ModelClass(unittest.TestCase):
         Args:
             None
         """
-        self.my_model1 = BaseModel()
-        self.my_model2 = BaseModel()
+        self.my_model1 = models.base_model.BaseModel()
+        self.my_model2 = models.base_model.BaseModel()
 
     @classmethod
     def tearDownClass(self):
@@ -48,7 +48,7 @@ class TestBase_ModelClass(unittest.TestCase):
         Args:
             None
         """
-        class_doc = BaseModel.__doc__
+        class_doc = models.base_model.BaseModel.__doc__
         self.assertTrue(len(class_doc.splitlines()) >= 3)
 
     def test_shebang(self):
@@ -76,8 +76,8 @@ class TestBase_ModelClass(unittest.TestCase):
         Args:
             None
         """
-        self.assertIsInstance(self.my_model1, BaseModel)
-        self.assertIsInstance(self.my_model2, BaseModel)
+        self.assertIsInstance(self.my_model1, models.base_model.BaseModel)
+        self.assertIsInstance(self.my_model2, models.base_model.BaseModel)
         self.assertTrue(hasattr(self.my_model1, "created_at"))
         self.assertTrue(hasattr(self.my_model1, "updated_at"))
         self.assertTrue(hasattr(self.my_model2, "created_at"))
@@ -139,11 +139,11 @@ class TestBase_ModelClass(unittest.TestCase):
             None
         """
         new_dict = self.my_model1.to_dict()
-        my_model3 = BaseModel(**new_dict)
+        my_model3 = models.base_model.BaseModel(**new_dict)
 
         self.assertEqual(self.my_model1.__dict__, my_model3.__dict__)
         self.assertEqual(self.my_model1.to_dict(), my_model3.to_dict())
-        self.assertIsInstance(my_model3, BaseModel)
+        self.assertIsInstance(my_model3, models.base_model.BaseModel)
         self.assertNotEqual(self.my_model1, my_model3)
         self.assertIsInstance(my_model3.created_at, datetime)
         self.assertIsInstance(my_model3.updated_at, datetime)
