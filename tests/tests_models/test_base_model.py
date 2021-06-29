@@ -86,6 +86,10 @@ class TestBase_ModelClass(unittest.TestCase):
         self.assertIsInstance(self.my_model1.updated_at, datetime)
         self.assertIsInstance(self.my_model2.created_at, datetime)
         self.assertIsInstance(self.my_model2.updated_at, datetime)
+        self.assertNotEqual(self.my_model1.created_at,
+                            self.my_model2.created_at)
+        self.assertNotEqual(self.my_model1.updated_at,
+                            self.my_model2.updated_at)
 
     def test_id(self):
         """
