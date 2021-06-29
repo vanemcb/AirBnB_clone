@@ -2,7 +2,7 @@
 """
 
 import unittest
-import models.user
+import models.state
 from models.state import State
 from models.base_model import BaseModel
 import os
