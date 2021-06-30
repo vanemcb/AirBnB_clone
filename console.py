@@ -46,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             new_object = eval(class_name + "()")
-            new_object.save()               
+            new_object.save()
             print(new_object.id)
 
     def help_create(self):
