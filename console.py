@@ -160,6 +160,16 @@ class HBNBCommand(cmd.Cmd):
             'name and id by adding or updating attribute.\n',
         ]))
 
+    def default(self, line):
+        command = line.split(".")
+        dict_objects = storage.all()
+        list_objects = []
+        for key, obj in dict_objects.items():
+            class_name = key.split(".")
+            if command[0] == class_name[0]:
+                list_objects.append(obj.__str__())
+        print(list_objects)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
