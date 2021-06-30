@@ -173,15 +173,13 @@ class HBNBCommand(cmd.Cmd):
             print(list_objects)
         elif command[1] == "count()":
             print(len(list_objects))
-
-        show_method = command[1]
-        show_name = show_method[:4]
-        if show_name == "show":
-            show_method = show_method[4:]
-            show_method = show_method.strip(
-                '"').strip("(").strip(")").replace('"', "")
-            comm_str = command[0] + " " + show_method
-            HBNBCommand.do_show(self, comm_str)
+        elif command[1][:4] == "show":
+            show_method = command[1]
+            show_name = show_method[:4]
+            if show_name == "show":
+                show_method = show_method[6:-2]
+                comm_str = command[0] + " " + show_method
+                HBNBCommand.do_show(self, comm_str)
 
 
 if __name__ == '__main__':
