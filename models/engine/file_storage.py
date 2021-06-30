@@ -4,6 +4,13 @@
     proposed by Holberton school to learn how a web page works.
 """
 import json
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
@@ -27,7 +34,7 @@ class FileStorage:
 
     def save(self):
         """ serializes __objects to the JSON file (path: __file_path) """
-        from models.base_model import BaseModel
+
         with open(FileStorage.__file_path, "w", encoding='utf-8') as my_file:
             my_dict_copy = FileStorage.__objects.copy()
 
@@ -37,13 +44,6 @@ class FileStorage:
 
     def reload(self):
         """ Deserializes the JSON file to __objects  """
-        from models.base_model import BaseModel
-        from models.user import User
-        from models.state import State
-        from models.city import City
-        from models.amenity import Amenity
-        from models.place import Place
-        from models.review import Review
 
         try:
             with open(FileStorage.__file_path, "r") as my_file2:
