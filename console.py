@@ -60,7 +60,6 @@ class HBNBCommand(cmd.Cmd):
         on the class name and id """
 
         args = line.split()
-        print(args)
 
         if not args:
             print("** class name missing **")
