@@ -114,15 +114,15 @@ class TestBase_ModelClass(unittest.TestCase):
             None
         """
         self.assertEqual(
-            print(
-                self.my_model1), print(
+            str(
+                self.my_model1), str(
                     "[{}] ({}) {}".format(
                         type(self.my_model1).__name__,
                         self.my_model1.id,
                         self.my_model1.__dict__)))
         self.assertEqual(
-            print(
-                self.my_model2), print(
+            str(
+                self.my_model2), str(
                     "[{}] ({}) {}".format(
                         type(self.my_model2).__name__,
                         self.my_model2.id,
