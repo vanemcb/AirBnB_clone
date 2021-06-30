@@ -180,6 +180,13 @@ class HBNBCommand(cmd.Cmd):
                 show_method = show_method[6:-2]
                 comm_str = command[0] + " " + show_method
                 HBNBCommand.do_show(self, comm_str)
+        elif command[1][:7] == "destroy":
+            destroy_method = command[1]
+            destroy_name = destroy_method[:7]
+            if destroy_name == "destroy":
+                destroy_method = destroy_method[9:-2]
+                comm_str = command[0] + " " + destroy_method
+                HBNBCommand.do_destroy(self, comm_str)
 
 
 if __name__ == '__main__':
