@@ -5,13 +5,6 @@
 """
 import json
 from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
-
 
 class FileStorage:
     """FileStorage class that serializes instances to a JSON file
@@ -49,21 +42,9 @@ class FileStorage:
             with open(FileStorage.__file_path, "r") as my_file2:
                 my_dict = json.loads(my_file2.read())
 
-            for obj_key, obj_value in my_dict.items():
-                if obj_value["__class__"] == "BaseModel":
-                    FileStorage.__objects[obj_key] = BaseModel(**obj_value)
-                elif obj_value["__class__"] == "User":
-                    FileStorage.__objects[obj_key] = User(**obj_value)
-                elif obj_value["__class__"] == "State":
-                    FileStorage.__objects[obj_key] = State(**obj_value)
-                elif obj_value["__class__"] == "City":
-                    FileStorage.__objects[obj_key] = City(**obj_value)
-                elif obj_value["__class__"] == "Amenity":
-                    FileStorage.__objects[obj_key] = Amenity(**obj_value)
-                elif obj_value["__class__"] == "Place":
-                    FileStorage.__objects[obj_key] = Place(**obj_value)
-                elif obj_value["__class__"] == "Review":
-                    FileStorage.__objects[obj_key] = Review(**obj_value)
+            for obj_value in my_dict.values():
 
+                new_object = eval(obj_value["__class__"])(**obj_value)
+                self.new(new_object)
         except FileNotFoundError:
             pass
