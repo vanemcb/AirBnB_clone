@@ -30,7 +30,8 @@ class TestBase_ModelClass(unittest.TestCase):
         Args:
             None
         """
-        pass
+        del self.my_model1
+        del self.my_model2
 
     # def test_Module_documentation(self):
     #     """
@@ -89,6 +90,12 @@ class TestBase_ModelClass(unittest.TestCase):
                             self.my_model2.created_at)
         self.assertNotEqual(self.my_model1.updated_at,
                             self.my_model2.updated_at)
+        self.my_model1.number = 102
+        self.my_model1.number2 = 10.3
+        self.my_model2.name = "Alex"
+        self.assertEqual(self.my_model1.number, 102)
+        self.assertEqual(self.my_model1.number2, 10.3)
+        self.assertEqual(self.my_model2.name, "Alex")
 
     def test_id(self):
         """
