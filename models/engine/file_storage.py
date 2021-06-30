@@ -50,8 +50,8 @@ class FileStorage:
                 my_dict = json.loads(my_file2.read())
 
             for obj_value in my_dict.values():
-
                 new_object = eval(obj_value["__class__"])(**obj_value)
                 self.new(new_object)
+
         except FileNotFoundError:
             pass

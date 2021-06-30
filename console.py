@@ -45,22 +45,8 @@ class HBNBCommand(cmd.Cmd):
         elif class_name not in HBNBCommand.class_list:
             print("** class doesn't exist **")
         else:
-            if class_name == "BaseModel":
-                new_object = BaseModel()
-            elif class_name == "User":
-                new_object = User()
-            elif class_name == "State":
-                new_object = State()
-            elif class_name == "City":
-                new_object = City()
-            elif class_name == "Amenity":
-                new_object = Amenity()
-            elif class_name == "Place":
-                new_object = Place()
-            elif class_name == "Review":
-                new_object = Review()
-
-            new_object.save()
+            new_object = eval(class_name + "()")
+            new_object.save()               
             print(new_object.id)
 
     def help_create(self):
