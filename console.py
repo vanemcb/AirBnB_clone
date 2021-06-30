@@ -188,8 +188,9 @@ class HBNBCommand(cmd.Cmd):
                     destroy_method = destroy_method[9:-2]
                     comm_str = command[0] + " " + destroy_method
                     HBNBCommand.do_destroy(self, comm_str)
-        except:
+        except IndexError:
             return super().default(line)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
