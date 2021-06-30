@@ -162,32 +162,34 @@ class HBNBCommand(cmd.Cmd):
         ]))
 
     def default(self, line):
-        command = line.split(".")
-        dict_objects = storage.all()
-        list_objects = []
-        for key, obj in dict_objects.items():
-            class_name = key.split(".")
-            if command[0] == class_name[0]:
-                list_objects.append(obj.__str__())
-        if command[1] == "all()":
-            print(list_objects)
-        elif command[1] == "count()":
-            print(len(list_objects))
-        elif command[1][:4] == "show":
-            show_method = command[1]
-            show_name = show_method[:4]
-            if show_name == "show":
-                show_method = show_method[6:-2]
-                comm_str = command[0] + " " + show_method
-                HBNBCommand.do_show(self, comm_str)
-        elif command[1][:7] == "destroy":
-            destroy_method = command[1]
-            destroy_name = destroy_method[:7]
-            if destroy_name == "destroy":
-                destroy_method = destroy_method[9:-2]
-                comm_str = command[0] + " " + destroy_method
-                HBNBCommand.do_destroy(self, comm_str)
-
+        try:
+            command = line.split(".")
+            dict_objects = storage.all()
+            list_objects = []
+            for key, obj in dict_objects.items():
+                class_name = key.split(".")
+                if command[0] == class_name[0]:
+                    list_objects.append(obj.__str__())
+            if command[1] == "all()":
+                print(list_objects)
+            elif command[1] == "count()":
+                print(len(list_objects))
+            elif command[1][:4] == "show":
+                show_method = command[1]
+                show_name = show_method[:4]
+                if show_name == "show":
+                    show_method = show_method[6:-2]
+                    comm_str = command[0] + " " + show_method
+                    HBNBCommand.do_show(self, comm_str)
+            elif command[1][:7] == "destroy":
+                destroy_method = command[1]
+                destroy_name = destroy_method[:7]
+                if destroy_name == "destroy":
+                    destroy_method = destroy_method[9:-2]
+                    comm_str = command[0] + " " + destroy_method
+                    HBNBCommand.do_destroy(self, comm_str)
+        except:
+            return super().default(line)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
