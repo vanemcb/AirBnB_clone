@@ -4,7 +4,6 @@
 
 import unittest
 import models.base_model
-#from models.base_model import BaseModel
 from datetime import datetime
 import json
 import os
@@ -33,42 +32,42 @@ class TestBase_ModelClass(unittest.TestCase):
         del self.my_model1
         del self.my_model2
 
-    # def test_Module_documentation(self):
-    #     """
-    #     testing module documentation
-    #     Args:
-    #         None
-    #     """
-    #     mod_doc = (models.base_model.__doc__)
-    #     self.assertTrue(len(mod_doc.strip().splitlines()) >= 3)
+    def test_Module_documentation(self):
+        """
+        testing module documentation
+        Args:
+            None
+        """
+        mod_doc = (models.base_model.__doc__)
+        self.assertTrue(len(mod_doc.strip().splitlines()) >= 3)
 
-    # def test_Class_documentation(self):
-    #     """
-    #     testing class documentation
-    #     Args:
-    #         None
-    #     """
-    #     class_doc = models.base_model.BaseModel.__doc__
-    #     self.assertTrue(len(class_doc.splitlines()) >= 3)
+    def test_Class_documentation(self):
+        """
+        testing class documentation
+        Args:
+            None
+        """
+        class_doc = models.base_model.BaseModel.__doc__
+        self.assertTrue(len(class_doc.splitlines()) >= 3)
 
-    # def test_shebang(self):
-    #     """
-    #     testing shebang
-    #     Args:
-    #         None
-    #     """
-    #     with open("models/base_model.py", "r") as file:
-    #         first_line = file.readline()
-    #         self.assertTrue(first_line.strip() == "#!/usr/bin/python3")
+    def test_shebang(self):
+        """
+        testing shebang
+        Args:
+            None
+        """
+        with open("models/base_model.py", "r") as file:
+            first_line = file.readline()
+            self.assertTrue(first_line.strip() == "#!/usr/bin/python3")
 
-    # def test_style(self):
-    #     """
-    #     testing pep8 style
-    #     Args:
-    #         None
-    #     """
-    #     with os.popen("pep8 models/base_model.py") as my_file:
-    #         self.assertEqual(my_file.read(), '')
+    def test_style(self):
+        """
+        testing pep8 style
+        Args:
+            None
+        """
+        with os.popen("pep8 models/base_model.py") as my_file:
+            self.assertEqual(my_file.read(), '')
 
     def test_constructor(self):
         """
