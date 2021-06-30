@@ -168,7 +168,10 @@ class HBNBCommand(cmd.Cmd):
             class_name = key.split(".")
             if command[0] == class_name[0]:
                 list_objects.append(obj.__str__())
-        print(list_objects)
+        if command[1] == "all()":
+            print(list_objects)
+        elif command[1] == "count()":
+            print(len(list_objects))
 
 
 if __name__ == '__main__':
