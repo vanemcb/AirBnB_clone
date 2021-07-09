@@ -36,12 +36,12 @@ button {
 	margin-left: 50px;
 }
 
-h3 {
+.amenities h3, .locations h3 {
 	font-weight: 600;
 	margin-bottom: 0px;
 }
 
-h4 {
+.amenities h4, .locations h4 {
 	margin-top: 15px;
 	line-height: 0;
 	font-weight: 400;
