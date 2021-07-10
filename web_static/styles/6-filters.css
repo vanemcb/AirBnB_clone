@@ -66,8 +66,12 @@ button {
 .locations li {
 	list-style: none;
 	line-height: 25px;
-	margin-left: 0px;
 }
+
+.sublist {
+	margin-left: 20px;
+}
+
 
 .locations:hover .popover {
 	display: block;
@@ -83,6 +87,6 @@ button {
 	margin-bottom: 0px;
 }
 
-.popover ul li:last-child {
+.popover li:last-child {
 	margin-bottom: 20px;
 }
